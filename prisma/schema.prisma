@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id      String  @id @default(uuid())
+  name    String  @unique
+  classes Class[]
+}
+
+model Class {
+  id          String    @id @default(uuid())
+  type        ClassType
+  day         Day
+  name        String
+  location    String
+  timeStart   String
+  timeEnd     String
+  professor   Professor @relation(fields: [professorId], references: [id])
+  professorId String
+  index       Int
+  weeks       Int[]
+  group       Group     @relation(fields: [groupId], references: [id])
+  groupId     String
+}
+
+model Professor {
+  id      String  @id @default(uuid())
+  name    String
+  classes Class[]
+}
+
+enum ClassType {
+  LECTURE
+  PRACTICE
+}
+
+enum Day {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+}
