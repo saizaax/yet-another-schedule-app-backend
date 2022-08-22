@@ -17,11 +17,22 @@ async function getById(id: string) {
 }
 
 async function add(body: GroupBodyRequest) {
-  console.log(body)
   const group = await prisma.group.create({
     data: body
   })
   return group
 }
 
-export default { getAll, getById, add }
+async function patch(id: string, body: GroupBodyRequest) {
+  const professor = await prisma.professor.update({
+    where: {
+      id
+    },
+    data: {
+      name: body.name
+    }
+  })
+  return professor
+}
+
+export default { getAll, getById, add, patch }

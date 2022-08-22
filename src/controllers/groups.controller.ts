@@ -29,4 +29,13 @@ async function post(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { get, getById, post }
+async function patch(req: Request, res: Response, next: NextFunction) {
+  try {
+    res.json(await groups.patch(req.params.id, req.body))
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+export default { get, getById, post, patch }
