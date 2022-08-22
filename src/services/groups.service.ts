@@ -24,7 +24,7 @@ async function add(body: GroupBodyRequest) {
 }
 
 async function patch(id: string, body: GroupBodyRequest) {
-  const professor = await prisma.professor.update({
+  const group = await prisma.group.update({
     where: {
       id
     },
@@ -32,7 +32,7 @@ async function patch(id: string, body: GroupBodyRequest) {
       name: body.name
     }
   })
-  return professor
+  return group
 }
 
 export default { getAll, getById, add, patch }
