@@ -12,7 +12,9 @@
       "@controllers/*": ["src/controllers/*"],
       "@services/*": ["src/services/*"],
       "@routes/*": ["src/routes/*"],
-      "@custom-types/*": ["src/types/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@utils/*": ["src/utils/*"],
+      "@custom-types/*": ["src/types/*"]
     }
   }
 }
