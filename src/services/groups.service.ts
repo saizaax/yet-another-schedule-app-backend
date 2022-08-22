@@ -1,6 +1,7 @@
 import { prisma } from "index"
 
 import { GroupBodyRequest } from "@custom-types/group.types"
+import { NotFoundError } from "@utils/AppError"
 
 async function getAll() {
   const groups = await prisma.group.findMany()
@@ -13,6 +14,9 @@ async function getById(id: string) {
       id
     }
   })
+
+  if (!group) throw new NotFoundError()
+
   return group
 }
 
@@ -35,4 +39,17 @@ async function patch(id: string, body: GroupBodyRequest) {
   return group
 }
 
-export default { getAll, getById, add, patch }
+async function remove(id: string) {
+  try {
+    await prisma.group.delete({
+      where: {
+        id
+      }
+    })
+    return { status: "success" }
+  } catch (e) {
+    throw new NotFoundError()
+  }
+}
+
+export default { getAll, getById, add, patch, remove }

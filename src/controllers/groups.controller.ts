@@ -38,4 +38,13 @@ async function patch(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { get, getById, post, patch }
+async function remove(req: Request, res: Response, next: NextFunction) {
+  try {
+    res.json(await groups.remove(req.params.id))
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
+export default { get, getById, post, patch, remove }

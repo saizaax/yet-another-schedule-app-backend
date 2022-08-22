@@ -1,6 +1,7 @@
 import { prisma } from "index"
 
 import { ProfessorBodyRequest } from "@custom-types/professor.types"
+import { NotFoundError } from "@utils/AppError"
 
 async function getAll() {
   const professors = await prisma.professor.findMany()
@@ -13,6 +14,9 @@ async function getById(id: string) {
       id
     }
   })
+
+  if (!professor) throw new NotFoundError()
+
   return professor
 }
 
@@ -35,4 +39,17 @@ async function patch(id: string, body: ProfessorBodyRequest) {
   return professor
 }
 
-export default { getAll, getById, add, patch }
+async function remove(id: string) {
+  try {
+    await prisma.professor.delete({
+      where: {
+        id
+      }
+    })
+    return { status: "success" }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export default { getAll, getById, add, patch, remove }

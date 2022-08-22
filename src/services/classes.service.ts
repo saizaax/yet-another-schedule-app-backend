@@ -1,6 +1,7 @@
 import { prisma } from "index"
 
 import { ClassBodyRequest } from "@custom-types/class.types"
+import { NotFoundError } from "@utils/AppError"
 
 async function getAll() {
   const classes = await prisma.class.findMany()
@@ -13,6 +14,9 @@ async function getById(id: string) {
       id
     }
   })
+
+  if (!classResult) throw new NotFoundError()
+
   return classResult
 }
 
@@ -77,4 +81,17 @@ async function patch(id: string, body: ClassBodyRequest) {
   return classResponse
 }
 
-export default { getAll, getById, add, patch }
+async function remove(id: string) {
+  try {
+    await prisma.class.delete({
+      where: {
+        id
+      }
+    })
+    return { status: "success" }
+  } catch (e) {
+    throw new NotFoundError()
+  }
+}
+
+export default { getAll, getById, add, patch, remove }
