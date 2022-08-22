@@ -1,23 +1,20 @@
-import express, { Express, Request, Response } from "express"
+import express from "express"
 import { PrismaClient } from "@prisma/client"
 
 import dotenv from "dotenv"
 
+import { rootRouter } from "@routes/index"
+
 dotenv.config()
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 const app = express()
 
+app.use(express.json())
+
+app.use("/api", rootRouter)
+
 const port = Number(process.env.PORT) || 3000
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server")
-})
-
-app.get("/groups", async (req: Request, res: Response) => {
-  const groups = await prisma.group.findMany()
-  res.json(groups)
-})
 
 app.listen(port, () => {
   console.log(`⚡️ [server]: Server is running at port: ${port}`)

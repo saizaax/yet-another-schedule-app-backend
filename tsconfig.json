@@ -6,6 +6,13 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@controllers/*": ["src/controllers/*"],
+      "@services/*": ["src/services/*"],
+      "@routes/*": ["src/routes/*"],
+      "@custom-types/*": ["src/types/*"],
+    }
   }
 }
