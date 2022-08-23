@@ -49,3 +49,74 @@ export type ClassBodyRequest = {
   weeks: number[]
   group: string
 }
+
+export type ClassResponse = {
+  id: string
+  type: string
+  day: string
+  name: string
+  location: string
+  timeStart: string
+  timeEnd: string
+  professor: Professor
+  professorId: string
+  index: number
+  weeks: number[]
+  groupId: string
+}
+
+export type ClassResult = {
+  id: string
+  subject: string
+  professor: string
+  location: string
+  timeStart: string
+  timeEnd: string
+  index: number
+  type: string
+  date: string
+  isLate: boolean
+}
+
+export type ClassesTemplate = {
+  schedule: {
+    MONDAY: {
+      day: "Понедельник"
+      dayShort: "ПН"
+      classes: ClassResult[]
+    }
+    TUESDAY: {
+      day: "Вторник"
+      dayShort: "ВТ"
+      classes: ClassResult[]
+    }
+    WEDNESDAY: {
+      day: "Среда"
+      dayShort: "СР"
+      classes: ClassResult[]
+    }
+    THURSDAY: {
+      day: "Четверг"
+      dayShort: "ЧТ"
+      classes: ClassResult[]
+    }
+    FRIDAY: {
+      day: "Пятница"
+      dayShort: "ПТ"
+      classes: ClassResult[]
+    }
+    SATURDAY: {
+      day: "Суббота"
+      dayShort: "СБ"
+      classes: ClassResult[]
+    }
+  },
+  week: {
+    number: number,
+    classes: number,
+    lectures: number,
+    practices: number,
+    hours: number,
+    type: "Нечётная" | "Чётная"
+  }
+}

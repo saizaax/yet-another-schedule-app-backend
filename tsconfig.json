@@ -13,6 +13,7 @@
       "@services/*": ["src/services/*"],
       "@routes/*": ["src/routes/*"],
       "@middlewares/*": ["src/middlewares/*"],
+      "@templates/*": ["src/templates/*"],
       "@utils/*": ["src/utils/*"],
       "@custom-types/*": ["src/types/*"]
     }

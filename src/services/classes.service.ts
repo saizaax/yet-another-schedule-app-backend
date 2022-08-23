@@ -2,17 +2,24 @@ import { prisma } from "index"
 
 import { ClassBodyRequest, ClassType } from "@custom-types/class.types"
 import { NotFoundError } from "@utils/AppError"
-import { pickQuery } from "@utils/pickQuery"
+import { formatClasses } from "@templates/classes.template"
+import { getCurrentWeek } from "@utils/dateFormat"
 
 async function getAll(group?: string, week?: string, type?: ClassType) {
+  const weekNumber = week ? Number(week) : getCurrentWeek()
+
   const classes = await prisma.class.findMany({
     where: {
       groupId: group,
       type: type,
-      weeks: pickQuery({ has: Number(week) }, week)
+      weeks: { has: weekNumber }
+    },
+    include: {
+      professor: true
     }
   })
-  return classes
+
+  return formatClasses(classes, weekNumber)
 }
 
 async function getById(id: string) {
