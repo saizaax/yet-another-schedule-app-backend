@@ -4,7 +4,7 @@ import { ClassBodyRequest, ClassType } from "@custom-types/class.types"
 import { NotFoundError } from "@utils/AppError"
 import { pickQuery } from "@utils/pickQuery"
 
-async function getAll(group: string, week: string, type: ClassType) {
+async function getAll(group?: string, week?: string, type?: ClassType) {
   const classes = await prisma.class.findMany({
     where: {
       groupId: group,

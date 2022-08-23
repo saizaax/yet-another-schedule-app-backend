@@ -8,7 +8,7 @@ async function get(
   res: Response,
   next: NextFunction
 ) {
-  const { group, week, type } = req.query
+  const { group, week, type }: ClassRequest = req.query
 
   try {
     res.json(await classes.getAll(group, week, type))
