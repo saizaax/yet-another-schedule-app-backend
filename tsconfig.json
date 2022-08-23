@@ -16,5 +16,8 @@
       "@utils/*": ["src/utils/*"],
       "@custom-types/*": ["src/types/*"]
     }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   }
 }
