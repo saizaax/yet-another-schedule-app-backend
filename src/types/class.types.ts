@@ -1,12 +1,12 @@
 import { Professor } from "@custom-types/professor.types"
 import { Group } from "@custom-types/group.types"
 
-enum ClassType {
+export enum ClassType {
   LECTURE = "LECTURE",
   PRACTICE = "PRACTICE"
 }
 
-enum Day {
+export enum Day {
   MONDAY = "MONDAY",
   TUESDAY = "TUESDAY",
   WEDNESDAY = "WEDNESDAY",
@@ -29,6 +29,12 @@ export type Class = {
   weeks: number[]
   group: Group
   groupId: string
+}
+
+export type ClassRequest = {
+  group?: string
+  week?: string
+  type?: ClassType
 }
 
 export type ClassBodyRequest = {

@@ -1,10 +1,17 @@
 import { NextFunction, Request, Response } from "express"
 
 import classes from "@services/classes.service"
+import { ClassRequest } from "@custom-types/class.types"
 
-async function get(req: Request, res: Response, next: NextFunction) {
+async function get(
+  req: Request<never, never, ClassRequest, never>,
+  res: Response,
+  next: NextFunction
+) {
+  const { group, week, type } = req.query
+
   try {
-    res.json(await classes.getAll())
+    res.json(await classes.getAll(group, week, type))
   } catch (err) {
     console.log(err)
     next(err)
