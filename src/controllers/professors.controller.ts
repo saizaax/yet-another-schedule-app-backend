@@ -1,10 +1,17 @@
 import { NextFunction, Request, Response } from "express"
 
 import professors from "@services/professors.service"
+import { ProfessorRequest } from "@custom-types/professor.types"
 
-async function get(req: Request, res: Response, next: NextFunction) {
+async function get(
+  req: Request<never, never, ProfessorRequest, never>,
+  res: Response,
+  next: NextFunction
+) {
+  const { search }: ProfessorRequest = req.query
+  
   try {
-    res.json(await professors.getAll())
+    res.json(await professors.getAll(search))
   } catch (err) {
     console.log(err)
     next(err)

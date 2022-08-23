@@ -3,6 +3,10 @@ export type Professor = {
   name: string
 }
 
+export type ProfessorRequest = {
+  search?: string
+}
+
 export type ProfessorBodyRequest = {
   name: string
 }

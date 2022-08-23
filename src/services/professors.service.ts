@@ -3,8 +3,14 @@ import { prisma } from "index"
 import { ProfessorBodyRequest } from "@custom-types/professor.types"
 import { NotFoundError } from "@utils/AppError"
 
-async function getAll() {
-  const professors = await prisma.professor.findMany()
+async function getAll(search?: string) {
+  const professors = await prisma.professor.findMany({
+    where: {
+      name: {
+        startsWith: search
+      }
+    }
+  })
   return professors
 }
 
