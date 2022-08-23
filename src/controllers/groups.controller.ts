@@ -1,10 +1,17 @@
 import { NextFunction, Request, Response } from "express"
 
 import groups from "@services/groups.service"
+import { GroupRequest } from "@custom-types/group.types"
 
-async function get(req: Request, res: Response, next: NextFunction) {
+async function get(
+  req: Request<never, never, GroupRequest, never>,
+  res: Response,
+  next: NextFunction
+) {
+  const { search }: GroupRequest = req.query
+
   try {
-    res.json(await groups.getAll())
+    res.json(await groups.getAll(search))
   } catch (err) {
     console.log(err)
     next(err)

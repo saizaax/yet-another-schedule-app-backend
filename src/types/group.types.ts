@@ -3,6 +3,10 @@ export type Group = {
   name: string
 }
 
+export type GroupRequest = {
+  search?: string
+}
+
 export type GroupBodyRequest = {
   name: string
 }

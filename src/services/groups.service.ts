@@ -3,8 +3,14 @@ import { prisma } from "index"
 import { GroupBodyRequest } from "@custom-types/group.types"
 import { NotFoundError } from "@utils/AppError"
 
-async function getAll() {
-  const groups = await prisma.group.findMany()
+async function getAll(search?: string) {
+  const groups = await prisma.group.findMany({
+    where: {
+      name: {
+        startsWith: search
+      }
+    }
+  })
   return groups
 }
 
