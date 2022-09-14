@@ -63,6 +63,7 @@ export type ClassResponse = {
   index: number
   weeks: number[]
   groupId: string
+  group?: Group
 }
 
 export type ClassResult = {
@@ -110,13 +111,13 @@ export type ClassesTemplate = {
       dayShort: "СБ"
       classes: ClassResult[]
     }
-  },
+  }
   week: {
-    number: number,
-    classes: number,
-    lectures: number,
-    practices: number,
-    hours: number,
+    number: number
+    classes: number
+    lectures: number
+    practices: number
+    hours: number
     type: "Нечётная" | "Чётная"
   }
 }

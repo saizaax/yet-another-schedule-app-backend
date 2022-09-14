@@ -24,7 +24,7 @@ export const getWeeksNumber = () => {
 }
 
 export const getCurrentWeek = () => {
-  return moment().diff(SEMESTER_START, "week") + 1
+  return moment().diff(SEMESTER_START, "week") + 2
 }
 
 export const getDate = (week: number, day: Day) => {
@@ -39,4 +39,17 @@ export const getIsLate = (date: string, time: string) => {
   const target = moment(`${date}, ${time}`, "DD.MM.YYYY, hh:mm")
 
   return today.diff(target, "minute") > 0 ? true : false
+}
+
+export const getShortDay = (day: Day) => {
+  const days = {
+    MONDAY: "ПН",
+    TUESDAY: "ВТ",
+    WEDNESDAY: "СР",
+    THURSDAY: "ЧТ",
+    FRIDAY: "ПТ",
+    SATURDAY: "СБ"
+  }
+
+  return days[day]
 }

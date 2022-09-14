@@ -1,7 +1,14 @@
 import { prisma } from "index"
 
-import { ProfessorBodyRequest } from "@custom-types/professor.types"
+import {
+  ProfessorBodyRequest,
+  ProfessorResponse
+} from "@custom-types/professor.types"
 import { NotFoundError } from "@utils/AppError"
+import {
+  formatProfessor,
+  formatProfessors
+} from "@templates/professors.template"
 
 async function getAll(search?: string) {
   const professors = await prisma.professor.findMany({
@@ -9,21 +16,31 @@ async function getAll(search?: string) {
       name: {
         startsWith: search
       }
+    },
+    include: {
+      classes: true
     }
   })
-  return professors
+  return formatProfessors(professors as ProfessorResponse[])
 }
 
 async function getById(id: string) {
   const professor = await prisma.professor.findUnique({
     where: {
       id
+    },
+    include: {
+      classes: {
+        include: {
+          group: true
+        }
+      }
     }
   })
 
   if (!professor) throw new NotFoundError()
 
-  return professor
+  return formatProfessor(professor as ProfessorResponse)
 }
 
 async function add(body: ProfessorBodyRequest) {
