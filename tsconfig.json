@@ -15,6 +15,7 @@
       "@middlewares/*": ["src/middlewares/*"],
       "@templates/*": ["src/templates/*"],
       "@utils/*": ["src/utils/*"],
+      "@parser/*": ["src/parser/*"],
       "@custom-types/*": ["src/types/*"]
     }
   },

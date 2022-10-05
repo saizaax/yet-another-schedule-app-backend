@@ -5,12 +5,18 @@ import { NotFoundError } from "@utils/AppError"
 import { formatClasses } from "@templates/classes.template"
 import { getCurrentWeek } from "@utils/dateFormat"
 
+async function get() {
+  return await prisma.class.findMany()
+}
+
 async function getAll(group?: string, week?: string, type?: ClassType) {
   const weekNumber = week ? Number(week) : getCurrentWeek()
 
   const classes = await prisma.class.findMany({
     where: {
-      groupId: group,
+      group: {
+        name: group
+      },
       type: type,
       weeks: { has: weekNumber }
     },
@@ -108,4 +114,4 @@ async function remove(id: string) {
   }
 }
 
-export default { getAll, getById, add, patch, remove }
+export default { get, getAll, getById, add, patch, remove }

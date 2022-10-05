@@ -38,6 +38,7 @@ model Professor {
 enum ClassType {
   LECTURE
   PRACTICE
+  LAB
 }
 
 enum Day {

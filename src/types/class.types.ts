@@ -3,7 +3,8 @@ import { Group } from "@custom-types/group.types"
 
 export enum ClassType {
   LECTURE = "LECTURE",
-  PRACTICE = "PRACTICE"
+  PRACTICE = "PRACTICE",
+  LAB = "LAB",
 }
 
 export enum Day {

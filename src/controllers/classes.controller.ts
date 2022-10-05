@@ -3,6 +3,19 @@ import { NextFunction, Request, Response } from "express"
 import classes from "@services/classes.service"
 import { ClassRequest } from "@custom-types/class.types"
 
+async function getAll(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    res.json(await classes.get())
+  } catch (err) {
+    console.log(err)
+    next(err)
+  }
+}
+
 async function get(
   req: Request<never, never, ClassRequest, never>,
   res: Response,
@@ -54,4 +67,4 @@ async function remove(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { get, getById, post, patch, remove }
+export default { getAll, get, getById, post, patch, remove }
