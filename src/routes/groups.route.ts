@@ -5,13 +5,13 @@ import { verifyToken } from "@middlewares/auth.middleware"
 
 const router = express.Router()
 
-/** Public **/
-router.get("/", groupsController.get)
-router.get("/:id", groupsController.getById)
-
 /** Protected **/
 router.post("/", verifyToken, groupsController.post)
 router.patch("/:id", verifyToken, groupsController.patch)
 router.delete("/:id", verifyToken, groupsController.remove)
+
+/** Public **/
+router.get("/", groupsController.get)
+router.get("/:id", groupsController.getById)
 
 export default router
