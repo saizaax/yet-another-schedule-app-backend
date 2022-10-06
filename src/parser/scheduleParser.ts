@@ -9,7 +9,7 @@ import {
 
 import { ClassBodyRequest } from "@custom-types/class.types"
 import { ScheduleItem } from "@custom-types/parser.types"
-import { NotFoundError } from "@utils/AppError"
+import { InternalServerError } from "@utils/AppError"
 
 export const fetchSchedule = async () => {
   try {
@@ -100,6 +100,6 @@ export const fetchSchedule = async () => {
     }
     return { status: "success" }
   } catch (e) {
-    throw new NotFoundError()
+    throw new InternalServerError()
   }
 }
