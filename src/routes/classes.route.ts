@@ -1,14 +1,18 @@
 import express from "express"
 
 import classesController from "@controllers/classes.controller"
+import { verifyToken } from "@middlewares/auth.middleware"
 
 const router = express.Router()
 
-router.get("/all", classesController.getAll)
+/** Public **/
 router.get("/", classesController.get)
-router.post("/", classesController.post)
 router.get("/:id", classesController.getById)
-router.patch("/:id", classesController.patch)
-router.delete("/:id", classesController.remove)
+
+/** Protected **/
+router.get("/all", verifyToken, classesController.getAll)
+router.post("/", verifyToken, classesController.post)
+router.patch("/:id", verifyToken, classesController.patch)
+router.delete("/:id", verifyToken, classesController.remove)
 
 export default router

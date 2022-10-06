@@ -1,9 +1,11 @@
 import express from "express"
 
 import scheduleController from "@controllers/schedule.controller"
+import { verifyToken } from "@middlewares/auth.middleware"
 
 const router = express.Router()
 
-router.post("/", scheduleController.post)
+/** Protected **/
+router.post("/", verifyToken, scheduleController.post)
 
 export default router
