@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: "database"
+      POSTGRES_USER: "username"
+      POSTGRES_PASSWORD: "password"
+    ports:
+      - "2345:5432"
+    networks:
+      - schedule-network
+      - default
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  schedule-backend:
+    image: yasa-backend:latest
+    ports:
+      - "8000:8000"
+    networks:
+      - schedule-network
+      - default
+    depends_on:
+      - postgres
+    environment:
+      - PORT=8000
+      - DATABASE_URL=postgresql://username:password@postgres:5432/database?schema=public
+      - SECRET_TOKEN=MY_SECRET_TOKEN
+      - PARSER_URL=http://parser-api:5000/api
+
+networks:
+  default:
+    external: false
+  schedule-network:
+    external: true
+
+volumes:
+  postgres-data:
