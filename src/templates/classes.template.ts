@@ -17,7 +17,6 @@ const formatClass = (item: ClassResponse, week: number, day: Day) => {
     timeEnd: item.timeEnd,
     index: item.index,
     type: type,
-    date: date,
     isLate: isLate
   }
 }
@@ -28,31 +27,37 @@ export const formatClasses = (classesInput: ClassResponse[], week: number) => {
       MONDAY: {
         day: "Понедельник",
         dayShort: "ПН",
+        date: getDate(week, Day.MONDAY),
         classes: []
       },
       TUESDAY: {
         day: "Вторник",
         dayShort: "ВТ",
+        date: getDate(week, Day.TUESDAY),
         classes: []
       },
       WEDNESDAY: {
         day: "Среда",
         dayShort: "СР",
+        date: getDate(week, Day.WEDNESDAY),
         classes: []
       },
       THURSDAY: {
         day: "Четверг",
         dayShort: "ЧТ",
+        date: getDate(week, Day.THURSDAY),
         classes: []
       },
       FRIDAY: {
         day: "Пятница",
         dayShort: "ПТ",
+        date: getDate(week, Day.FRIDAY),
         classes: []
       },
       SATURDAY: {
         day: "Суббота",
         dayShort: "СБ",
+        date: getDate(week, Day.SATURDAY),
         classes: []
       }
     },

@@ -24,7 +24,7 @@ export const getWeeksNumber = () => {
 }
 
 export const getCurrentWeek = () => {
-  return moment().diff(SEMESTER_START, "week") + 2
+  return moment().diff(SEMESTER_START, "week") + 1
 }
 
 export const getDate = (week: number, day: Day) => {

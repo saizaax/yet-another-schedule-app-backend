@@ -76,7 +76,6 @@ export type ClassResult = {
   timeEnd: string
   index: number
   type: string
-  date: string
   isLate: boolean
 }
 
@@ -85,31 +84,37 @@ export type ClassesTemplate = {
     MONDAY: {
       day: "Понедельник"
       dayShort: "ПН"
+      date: string
       classes: ClassResult[]
     }
     TUESDAY: {
       day: "Вторник"
       dayShort: "ВТ"
+      date: string
       classes: ClassResult[]
     }
     WEDNESDAY: {
       day: "Среда"
       dayShort: "СР"
+      date: string
       classes: ClassResult[]
     }
     THURSDAY: {
       day: "Четверг"
       dayShort: "ЧТ"
+      date: string
       classes: ClassResult[]
     }
     FRIDAY: {
       day: "Пятница"
       dayShort: "ПТ"
+      date: string
       classes: ClassResult[]
     }
     SATURDAY: {
       day: "Суббота"
       dayShort: "СБ"
+      date: string
       classes: ClassResult[]
     }
   }
