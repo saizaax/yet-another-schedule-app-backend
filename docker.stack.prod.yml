@@ -7,33 +7,40 @@ services:
       POSTGRES_DB: "schedule"
       POSTGRES_USER: "username"
       POSTGRES_PASSWORD: "password"
-    ports:
-      - "2345:5432"
     networks:
       - schedule-network
       - default
     volumes:
       - postgres-data:/var/lib/postgresql/data
   schedule-backend:
-    build: ./
-    ports:
-      - "8000:8000"
+    image: yasa-backend:latest
     networks:
+      - traefik-gateway
       - schedule-network
       - default
     depends_on:
       - postgres
-    restart: always
     environment:
-      - PORT=8000
+      - PORT=3001
       - DATABASE_URL=postgresql://username:password@postgres:5432/schedule?schema=public
       - SECRET_TOKEN=SECRET_TOKEN
       - PARSER_URL=http://parser-api:5000/api
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - 'traefik.http.routers.schedule.rule=Host(`example.com`)'
+        - "traefik.http.routers.schedule.entrypoints=websecure"
+        - "traefik.http.routers.schedule.tls.certresolver=letsencrypt"
+        - "traefik.http.routers.schedule.tls=true"
+        - "traefik.http.services.schedule.loadbalancer.server.port=3001"
 
 networks:
   default:
     external: false
   schedule-network:
+    external: true
+  traefik-gateway:
     external: true
 
 volumes:
