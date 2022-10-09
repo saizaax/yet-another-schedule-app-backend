@@ -10,7 +10,7 @@ async function get() {
 }
 
 async function getAll(group?: string, week?: string, type?: ClassType) {
-  const weekNumber = week ? Number(week) : getCurrentWeek()
+  const weekNumber = week ? Number(week) : undefined
 
   const classes = await prisma.class.findMany({
     where: {
@@ -18,7 +18,7 @@ async function getAll(group?: string, week?: string, type?: ClassType) {
         name: group
       },
       type: type,
-      weeks: { has: weekNumber }
+      weeks: weekNumber ? { has: weekNumber } : undefined
     },
     include: {
       professor: true
