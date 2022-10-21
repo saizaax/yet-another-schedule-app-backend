@@ -41,8 +41,8 @@ jobs:
       - name: Update Docker service
         uses: appleboy/ssh-action@master
         env:
-          IMAGE: $IMAGE_NAME:$GITHUB_RUN_NUMBER
-          SERVICE: $SERVICE_NAME
+          IMAGE: ${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          SERVICE: ${{ env.SERVICE_NAME }}
         with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
