@@ -46,6 +46,9 @@ jobs:
         env:
           IMAGE: $IMAGE_NAME:$GITHUB_RUN_NUMBER
           SERVICE: $SERVICE_NAME
+          VM_HOST: $VM_HOST
+          VM_USER: $VM_USER
+          VM_SSH_KEY: $VM_SSH_KEY
         with:
           host: $VM_HOST
           username: $VM_USER
