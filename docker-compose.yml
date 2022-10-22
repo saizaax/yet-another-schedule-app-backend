@@ -14,7 +14,7 @@ services:
       - default
     volumes:
       - postgres-data:/var/lib/postgresql/data
-  node:
+  express:
     build: ./
     ports:
       - "8000:8000"
