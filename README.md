@@ -1,4 +1,4 @@
-# Backend — Express.js REST API
+# Backend — Yet Another Schedule App
 
 [![Express](https://img.shields.io/badge/Express-ffffff?logo=express&logoColor=black)](https://expressjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -79,7 +79,7 @@
 
 <br>
 
-## How to run in Docker
+### How to run in Docker
 
 * Download & Install [Docker / Docker Desktop](https://www.docker.com/products/docker-desktop)
 
